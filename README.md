@@ -16,7 +16,7 @@ Diffusion models have recently gained unprecedented attention in the field of im
 
 ### Core Idea: Feature Reusing
 
-The high-level features of U-Net can be heavily reused across the denoising process. This allows us to only forward the shallow layers for most timesteps.
+The high-level features in U-Net can be heavily reused across the denoising process. This allows us to only forward the shallow layers for most timesteps.
 <div align="center">
 <img width="70%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/9ce3930c-c84c-4af8-8c6a-b6803a5a7b1d">
 </div>
