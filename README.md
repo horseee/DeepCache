@@ -14,10 +14,10 @@
 
 ### Introduction
 
-we introduce **DeepCache**, a novel training-free paradigm that accelerates diffusion models from the perspective of model architecture. Utilizing the property of the U-Net, we reuse the high-level features while updating the low-level features in a very cheap way. This innovative strategy, in turn, enables a speedup factor of 2.3$\times$ for Stable Diffusion v1.5 with only a 0.05 decline in CLIP Score, and 4.1$\times$  for LDM-4-G with a slight decrease of 0.22 in FID  on ImageNet.
+we introduce **DeepCache**, a novel training-free paradigm that accelerates diffusion models from the perspective of model architecture. Utilizing the property of the U-Net, we reuse the high-level features while updating the low-level features in a very cheap way. DeepCache accelerates 2.3x for Stable Diffusion v1.5 with only a 0.05 decline in CLIP Score, and 4.1x for LDM-4-G(ImageNet) with a 0.22 decrease in FID.
 
 <div align="center">
-<img width="70%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/9ce3930c-c84c-4af8-8c6a-b6803a5a7b1d">
+<img width="50%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/9ce3930c-c84c-4af8-8c6a-b6803a5a7b1d">
 </div>
 
 ## Quick Start
@@ -30,7 +30,7 @@ python stable_diffusion.py --model runwayml/stable-diffusion-v1-5
 Output:
 ```bash
 2023-12-03 16:18:13,636 - INFO - Loaded safety_checker as StableDiffusionSafetyChecker from `safety_checker` subfolder of runwayml/stable-diffusion-v1-5.
-Loading pipeline components...:  86%|████████████████████████████████████████████████████████▌         | 6/7 [00:01<00:00,  4.96it/s]2023-12-03 16:18:13,699 - INFO - Loaded vae as AutoencoderKL from `vae` subfolder of runwayml/stable-diffusion-v1-5.
+2023-12-03 16:18:13,699 - INFO - Loaded vae as AutoencoderKL from `vae` subfolder of runwayml/stable-diffusion-v1-5.
 Loading pipeline components...: 100%|██████████████████████████████████████████████████████████████████| 7/7 [00:01<00:00,  5.88it/s]
 2023-12-03 16:18:14,858 - INFO - Warming up GPU...
 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:04<00:00, 11.91it/s]
@@ -66,11 +66,11 @@ Loading pipeline components...: 100%|██████████████�
 2023-12-03 16:22:12,911 - INFO - DeepCache: 8.36 seconds
 2023-12-03 16:22:13,417 - INFO - Saved to output.png. Done!
 ```
-
+Currently, our code supports the models that can be loaded by [StableDiffusionPipeline](https://huggingface.co/docs/diffusers/v0.24.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). You can specify the model name by the argument `--model`, which by default, is `runwayml/stable-diffusion-v1-5.` We are arranging the code for LDM and DDPM and will be released in the next few days.
 
 ## Visualization
 
-The original images are depicted in the upper line, and the images accelerated by DeepCache are shown in the lower line
+Images in the upper line are the baselines, and the images in the lower line are accelerated by DeepCache. 
 
 ### Stable Diffusion v1.5 (2.15x Acceleration)
 <div align="center">
@@ -101,6 +101,8 @@ The original images are depicted in the upper line, and the images accelerated b
 <div align="center">
 <img width="80%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/e9bd7a8e-07c8-4296-95a2-12d008995807">
 </div>
+
+More results can be found in our [paper]()
 
 ## Bibtex
 ```
