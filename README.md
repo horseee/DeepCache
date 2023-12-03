@@ -14,7 +14,7 @@
 
 ### Introduction
 
-we introduce **DeepCache**, a novel training-free paradigm that accelerates diffusion models from the perspective of model architecture. Utilizing the property of the U-Net, we reuse the high-level features while updating the low-level features in a very cheap way. DeepCache accelerates 2.3x for Stable Diffusion v1.5 with only a 0.05 decline in CLIP Score, and 4.1x for LDM-4-G(ImageNet) with a 0.22 decrease in FID.
+We introduce **DeepCache**, a novel training-free paradigm that accelerates diffusion models from the perspective of model architecture. Utilizing the property of the U-Net, we reuse the high-level features while updating the low-level features in a very cheap way. DeepCache accelerates 2.3x for Stable Diffusion v1.5 with only a 0.05 decline in CLIP Score, and 4.1x for LDM-4-G(ImageNet) with a 0.22 decrease in FID.
 
 <div align="center">
 <img width="50%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/9ce3930c-c84c-4af8-8c6a-b6803a5a7b1d">
