@@ -22,6 +22,9 @@ we introduce **DeepCache**, a novel training-free paradigm that accelerates diff
 
 ## Quick Start
 
+
+
+
 ### Stable Diffusion v1.5
 ```bash
 python stable_diffusion.py --model runwayml/stable-diffusion-v1-5
@@ -67,6 +70,19 @@ Loading pipeline components...: 100%|██████████████�
 2023-12-03 16:22:13,417 - INFO - Saved to output.png. Done!
 ```
 Currently, our code supports the models that can be loaded by [StableDiffusionPipeline](https://huggingface.co/docs/diffusers/v0.24.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). You can specify the model name by the argument `--model`, which by default, is `runwayml/stable-diffusion-v1-5.` We are arranging the code for LDM and DDPM and will be released in the next few days.
+
+### Usage
+
+```python
+from DeepCache.pipeline_stable_diffusion import StableDiffusionPipeline
+pipe = DeepCacheStableDiffusionPipeline.from_pretrained(args.model, torch_dtype=torch.float16).to("cuda:0")
+deepcache_output = pipe(
+    prompt, 
+    cache_interval=5, cache_layer_id=0, cache_block_id=0,
+    uniform=True, pow=1.4, center=15,
+    output_type='pt', return_dict=True
+).images
+```
 
 ## Visualization
 

@@ -751,8 +751,8 @@ class UNet2DConditionModel(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin)
         encoder_attention_mask: Optional[torch.Tensor] = None,
         quick_replicate: bool = False,
         replicate_prv_feature: Optional[List[torch.Tensor]] = None,
-        replicate_layer_number: Optional[int] = None,
-        replicate_block_number: Optional[int] = None,
+        cache_layer_id: Optional[int] = None,
+        cache_block_id: Optional[int] = None,
         return_dict: bool = True,
     ) -> Union[UNet2DConditionOutput, Tuple]:
         r"""
@@ -958,7 +958,7 @@ class UNet2DConditionModel(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin)
         if quick_replicate and replicate_prv_feature is not None:
             # Down
             for i, downsample_block in enumerate(self.down_blocks):
-                if i > replicate_layer_number:
+                if i > cache_layer_id:
                     break
 
                 if hasattr(downsample_block, "has_cross_attention") and downsample_block.has_cross_attention:
@@ -974,7 +974,7 @@ class UNet2DConditionModel(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin)
                         attention_mask=attention_mask,
                         cross_attention_kwargs=cross_attention_kwargs,
                         encoder_attention_mask=encoder_attention_mask,
-                        exist_block_number=replicate_block_number if i == replicate_layer_number else None,
+                        exist_block_number=cache_block_id if i == cache_layer_id else None,
                         **additional_residuals,
                     )
                 else:
@@ -990,18 +990,18 @@ class UNet2DConditionModel(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin)
             #print("down_block_res_samples:", [res_sample.shape for res_sample in down_block_res_samples])
             sample = replicate_prv_feature
             #down_block_res_samples = down_block_res_samples[:-1]
-            if replicate_block_number == len(self.down_blocks[replicate_layer_number].attentions) :
-                replicate_block_number = 0
-                replicate_layer_number += 1
+            if cache_block_id == len(self.down_blocks[cache_layer_id].attentions) :
+                cache_block_id = 0
+                cache_layer_id += 1
             else:
-                replicate_block_number += 1
+                cache_block_id += 1
 
             for i, upsample_block in enumerate(self.up_blocks):
-                if i < len(self.up_blocks) - 1 - replicate_layer_number:
+                if i < len(self.up_blocks) - 1 - cache_layer_id:
                     continue
 
-                if i == len(self.up_blocks) - 1 - replicate_layer_number:
-                    trunc_upsample_block = replicate_block_number + 1
+                if i == len(self.up_blocks) - 1 - cache_layer_id:
+                    trunc_upsample_block = cache_block_id + 1
                 else:
                     trunc_upsample_block = len(upsample_block.resnets)
 
@@ -1026,7 +1026,7 @@ class UNet2DConditionModel(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin)
                         upsample_size=upsample_size,
                         attention_mask=attention_mask,
                         encoder_attention_mask=encoder_attention_mask,
-                        enter_block_number=replicate_block_number if i == len(self.up_blocks) - 1 - replicate_layer_number else None,
+                        enter_block_number=cache_block_id if i == len(self.up_blocks) - 1 - cache_layer_id else None,
                     )
                 else:
                     sample = upsample_block(
@@ -1096,14 +1096,14 @@ class UNet2DConditionModel(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin)
                 sample = sample + mid_block_additional_residual
 
             # 5. up
-            if replicate_block_number is not None:
-                if replicate_block_number == len(self.down_blocks[replicate_layer_number].attentions) :
-                    replicate_block_number = 0
-                    replicate_layer_number += 1
+            if cache_block_id is not None:
+                if cache_block_id == len(self.down_blocks[cache_layer_id].attentions) :
+                    cache_block_id = 0
+                    cache_layer_id += 1
                 else:
-                    replicate_block_number += 1
+                    cache_block_id += 1
             #print("down_block_res_samples:", [res_sample.shape for res_sample in down_block_res_samples])
-            #print(replicate_block_number, replicate_layer_number)
+            #print(cache_block_id, cache_layer_id)
             prv_f = None
             for i, upsample_block in enumerate(self.up_blocks):
                 is_final_block = i == len(self.up_blocks) - 1
@@ -1138,8 +1138,8 @@ class UNet2DConditionModel(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin)
                     current_record_f = None
 
                 #print("Append prv_feature with shape:", sample.shape)
-                if replicate_layer_number is not None and current_record_f is not None and i == len(self.up_blocks) - replicate_layer_number - 1:
-                    prv_f = current_record_f[-replicate_block_number-1]
+                if cache_layer_id is not None and current_record_f is not None and i == len(self.up_blocks) - cache_layer_id - 1:
+                    prv_f = current_record_f[-cache_block_id-1]
                 
         # 6. post-process
         if self.conv_norm_out:

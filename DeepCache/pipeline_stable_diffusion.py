@@ -581,9 +581,9 @@ class StableDiffusionPipeline(DiffusionPipeline, TextualInversionLoaderMixin, Lo
         callback_steps: int = 1,
         cross_attention_kwargs: Optional[Dict[str, Any]] = None,
         guidance_rescale: float = 0.0,
-        update_feature_interval: int = 1,
-        replicate_layer_number: int = None,
-        replicate_block_number: int = None,
+        cache_interval: int = 1,
+        cache_layer_id: int = None,
+        cache_block_id: int = None,
         uniform: bool = True,
         pow: float = None,
         center: int = None,
@@ -723,24 +723,24 @@ class StableDiffusionPipeline(DiffusionPipeline, TextualInversionLoaderMixin, Lo
         prv_features = None
         latents_list = [latents]
 
-        if update_feature_interval == 1:
+        if cache_interval == 1:
             interval_seq = list(range(num_inference_steps))
         else:
             if uniform:
-                interval_seq = list(range(0, num_inference_steps, update_feature_interval))
+                interval_seq = list(range(0, num_inference_steps, cache_interval))
             else:
-                num_slow_step = num_inference_steps//update_feature_interval
-                if num_inference_steps%update_feature_interval != 0:
+                num_slow_step = num_inference_steps//cache_interval
+                if num_inference_steps%cache_interval != 0:
                     num_slow_step += 1
                 
                 interval_seq, pow = sample_from_quad_center(num_inference_steps, num_slow_step, center=center, pow=pow)#[0, 3, 6, 9, 12, 16, 22, 28, 35, 43,]
-                #interval_seq, pow = sample_from_quad(num_inference_steps, num_inference_steps//update_feature_interval, pow=pow)#[0, 3, 6, 9, 12, 16, 22, 28, 35, 43,]
+                #interval_seq, pow = sample_from_quad(num_inference_steps, num_inference_steps//cache_interval, pow=pow)#[0, 3, 6, 9, 12, 16, 22, 28, 35, 43,]
         
         interval_seq = sorted(interval_seq)
         #print(interval_seq, len(interval_seq), pow)
 
         with self.progress_bar(total=num_inference_steps) as progress_bar:
-            #print("[INFO] Update Feature Interval = {}, Update Layer Number = {}, Update Block Number = {}".format(update_feature_interval, replicate_layer_number, replicate_block_number))
+            #print("[INFO] Update Feature Interval = {}, Update Layer Number = {}, Update Block Number = {}".format(cache_interval, cache_layer_id, cache_block_id))
             for i, t in enumerate(timesteps):
                 # expand the latents if we are doing classifier free guidance
                 latent_model_input = torch.cat([latents] * 2) if do_classifier_free_guidance else latents
@@ -756,9 +756,9 @@ class StableDiffusionPipeline(DiffusionPipeline, TextualInversionLoaderMixin, Lo
                     encoder_hidden_states=prompt_embeds,
                     cross_attention_kwargs=cross_attention_kwargs,
                     replicate_prv_feature=prv_features,
-                    quick_replicate= update_feature_interval>1,
-                    replicate_layer_number=replicate_layer_number,
-                    replicate_block_number=replicate_block_number,
+                    quick_replicate= cache_interval>1,
+                    cache_layer_id=cache_layer_id,
+                    cache_block_id=cache_block_id,
                     return_dict=False,
                 )
 
