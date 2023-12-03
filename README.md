@@ -22,14 +22,51 @@ The high-level features of U-Net can be heavily reused across the denoising proc
 
 ## Quick Start
 
+### Stable Diffusion v1.5
 ```bash
-python stable_diffusion.py
+python stable_diffusion.py --model
 ```
 
 Output:
 ```bash
-
+2023-12-03 16:18:13,636 - INFO - Loaded safety_checker as StableDiffusionSafetyChecker from `safety_checker` subfolder of runwayml/stable-diffusion-v1-5.
+Loading pipeline components...:  86%|████████████████████████████████████████████████████████▌         | 6/7 [00:01<00:00,  4.96it/s]2023-12-03 16:18:13,699 - INFO - Loaded vae as AutoencoderKL from `vae` subfolder of runwayml/stable-diffusion-v1-5.
+Loading pipeline components...: 100%|██████████████████████████████████████████████████████████████████| 7/7 [00:01<00:00,  5.88it/s]
+2023-12-03 16:18:14,858 - INFO - Warming up GPU...
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:04<00:00, 11.91it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:03<00:00, 15.36it/s]
+2023-12-03 16:18:22,837 - INFO - Running baseline...
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:03<00:00, 15.33it/s]
+2023-12-03 16:18:26,174 - INFO - Baseline: 3.34 seconds
+2023-12-03 16:18:26,174 - INFO - Running DeepCache...
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:01<00:00, 34.06it/s]
+2023-12-03 16:18:27,718 - INFO - DeepCache: 1.54 seconds
+2023-12-03 16:18:27,935 - INFO - Saved to output.png. Done!
 ```
+
+### Stable Diffusion v2.1
+
+```bash
+python stable_diffusion.py --model
+```
+
+Output:
+```
+2023-12-03 16:21:17,858 - INFO - Loaded feature_extractor as CLIPImageProcessor from `feature_extractor` subfolder of stabilityai/stable-diffusion-2-1.
+2023-12-03 16:21:17,864 - INFO - Loaded scheduler as DDIMScheduler from `scheduler` subfolder of stabilityai/stable-diffusion-2-1.
+Loading pipeline components...: 100%|██████████████████████████████████████████████████████████████████| 6/6 [00:01<00:00,  5.35it/s]
+2023-12-03 16:21:19,057 - INFO - Warming up GPU...
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:15<00:00,  3.23it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:14<00:00,  3.43it/s]
+2023-12-03 16:21:49,770 - INFO - Running baseline...
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:14<00:00,  3.42it/s]
+2023-12-03 16:22:04,551 - INFO - Baseline: 14.78 seconds
+2023-12-03 16:22:04,551 - INFO - Running DeepCache...
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:08<00:00,  6.10it/s]
+2023-12-03 16:22:12,911 - INFO - DeepCache: 8.36 seconds
+2023-12-03 16:22:13,417 - INFO - Saved to output.png. Done!
+```
+
 
 ## Visualization
 
