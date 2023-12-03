@@ -73,7 +73,7 @@ pipe = DeepCacheStableDiffusionPipeline.from_pretrained('runwayml/stable-diffusi
 deepcache_output = pipe(
     prompt, 
     cache_interval=5, cache_layer_id=0, cache_block_id=0,
-    uniform=True, #pow=1.4, center=15, 
+    uniform=True, #pow=1.4, center=15, # only for uniform = False
     output_type='pt', return_dict=True
 ).images
 ```
