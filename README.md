@@ -22,7 +22,9 @@ we introduce **DeepCache**, a novel training-free paradigm that accelerates diff
 
 ## Quick Start
 
-
+```bash
+pip install diffusers==0.21.4 transformers
+```
 
 
 ### Stable Diffusion v1.5
