@@ -1,6 +1,6 @@
 # DeepCache: Accelerating Diffusion Models for Free
 <div align="center">
-  <img src="https://github.com/horseee/Diffusion_DeepCache/blob/master/static/images/example.gif" width="100%" ></img>
+  <img src="assets/intro.pdf" width="100%" ></img>
 </div>
 
 
