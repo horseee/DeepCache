@@ -11,7 +11,8 @@
 
 ### Introduction
 
-The high-level features of U-Net across the denoising process are highly similar and thus can be heavily reused. This allows us to only forward the shallow layers for most timesteps.
+we introduce **DeepCache**, a novel training-free paradigm that accelerates diffusion models from the perspective of model architecture. Utilizing the property of the U-Net, we reuse the high-level features while updating the low-level features in a very cheap way. This innovative strategy, in turn, enables a speedup factor of 2.3$\times$ for Stable Diffusion v1.5 with only a 0.05 decline in CLIP Score, and 4.1$\times$  for LDM-4-G with a slight decrease of 0.22 in FID  on ImageNet.
+
 <div align="center">
 <img width="70%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/9ce3930c-c84c-4af8-8c6a-b6803a5a7b1d">
 </div>

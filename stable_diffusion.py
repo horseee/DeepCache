@@ -12,7 +12,6 @@ def set_random_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
-
 if __name__ == "__main__":
     model_id_v2_1 = 'stabilityai/stable-diffusion-2-1'
     model_id_v1_5 = 'runwayml/stable-diffusion-v1-5'
