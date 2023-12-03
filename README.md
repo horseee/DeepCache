@@ -1,6 +1,6 @@
 # DeepCache: Accelerating Diffusion Models for Free
 <div align="center">
-  <img src="assets/intro.pdf" width="100%" ></img>
+  <img src="assets/intro.png" width="100%" ></img>
 </div>
 
 
