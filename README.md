@@ -35,9 +35,6 @@ Output:
 2023-12-03 16:18:13,636 - INFO - Loaded safety_checker as StableDiffusionSafetyChecker from `safety_checker` subfolder of runwayml/stable-diffusion-v1-5.
 2023-12-03 16:18:13,699 - INFO - Loaded vae as AutoencoderKL from `vae` subfolder of runwayml/stable-diffusion-v1-5.
 Loading pipeline components...: 100%|██████████████████████████████████████████████████████████████████| 7/7 [00:01<00:00,  5.88it/s]
-2023-12-03 16:18:14,858 - INFO - Warming up GPU...
-100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:04<00:00, 11.91it/s]
-100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:03<00:00, 15.36it/s]
 2023-12-03 16:18:22,837 - INFO - Running baseline...
 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:03<00:00, 15.33it/s]
 2023-12-03 16:18:26,174 - INFO - Baseline: 3.34 seconds
@@ -54,13 +51,10 @@ python stable_diffusion.py --model stabilityai/stable-diffusion-2-1
 ```
 
 Output:
-```
+```bash
 2023-12-03 16:21:17,858 - INFO - Loaded feature_extractor as CLIPImageProcessor from `feature_extractor` subfolder of stabilityai/stable-diffusion-2-1.
 2023-12-03 16:21:17,864 - INFO - Loaded scheduler as DDIMScheduler from `scheduler` subfolder of stabilityai/stable-diffusion-2-1.
 Loading pipeline components...: 100%|██████████████████████████████████████████████████████████████████| 6/6 [00:01<00:00,  5.35it/s]
-2023-12-03 16:21:19,057 - INFO - Warming up GPU...
-100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:15<00:00,  3.23it/s]
-100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:14<00:00,  3.43it/s]
 2023-12-03 16:21:49,770 - INFO - Running baseline...
 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:14<00:00,  3.42it/s]
 2023-12-03 16:22:04,551 - INFO - Baseline: 14.78 seconds
@@ -69,20 +63,28 @@ Loading pipeline components...: 100%|██████████████�
 2023-12-03 16:22:12,911 - INFO - DeepCache: 8.36 seconds
 2023-12-03 16:22:13,417 - INFO - Saved to output.png. Done!
 ```
-Currently, our code supports the models that can be loaded by [StableDiffusionPipeline](https://huggingface.co/docs/diffusers/v0.24.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). You can specify the model name by the argument `--model`, which by default, is `runwayml/stable-diffusion-v1-5.` We are arranging the code for LDM and DDPM and will be released in the next few days.
+Currently, our code supports the models that can be loaded by [StableDiffusionPipeline](https://huggingface.co/docs/diffusers/v0.24.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). You can specify the model name by the argument `--model`, which by default, is `runwayml/stable-diffusion-v1-5`. We are arranging the code for LDM and DDPM and will be released in the next few days.
 
 ### Usage
 
 ```python
 from DeepCache.pipeline_stable_diffusion import StableDiffusionPipeline
-pipe = DeepCacheStableDiffusionPipeline.from_pretrained(args.model, torch_dtype=torch.float16).to("cuda:0")
+pipe = DeepCacheStableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5', torch_dtype=torch.float16).to("cuda:0")
 deepcache_output = pipe(
     prompt, 
     cache_interval=5, cache_layer_id=0, cache_block_id=0,
-    uniform=True, pow=1.4, center=15,
+    uniform=True, #pow=1.4, center=15, 
     output_type='pt', return_dict=True
 ).images
 ```
+
+Arguments:
+* cache_interval: the interval (N in the 1:N strategy) of cache update. No deepcache if cache_interval set to 1.
+* cache_layer_id & cache_block_id: the block/layer ID of selected skip branch. 
+* uniform: whether to adopt uniform caching strategy of not.
+* pow and center: the hyperparameters for non-uniform 1:N strategy.
+
+
 
 ## Visualization
 
