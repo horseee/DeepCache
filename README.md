@@ -25,7 +25,7 @@ The high-level features of U-Net can be heavily reused across the denoising proc
 
 ### Stable Diffusion v1.5
 ```bash
-python stable_diffusion.py --model
+python stable_diffusion.py --model runwayml/stable-diffusion-v1-5
 ```
 
 Output:
@@ -48,7 +48,7 @@ Loading pipeline components...: 100%|██████████████�
 ### Stable Diffusion v2.1
 
 ```bash
-python stable_diffusion.py --model
+python stable_diffusion.py --model stabilityai/stable-diffusion-2-1
 ```
 
 Output:
