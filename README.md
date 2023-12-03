@@ -31,9 +31,6 @@ Output:
 
 ```
 
-
-
-
 ## Visualization
 
 The original images are depicted in the upper line, and the images accelerated by DeepCache are shown in the lower line
