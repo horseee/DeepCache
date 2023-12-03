@@ -38,17 +38,17 @@ Output:
 
 The original images are depicted in the upper line, and the images accelerated by DeepCache are shown in the lower line
 
-### Stable Diffusion v1.5 (2.15x)
+### Stable Diffusion v1.5 (2.15x Acceleration)
 <div align="center">
   <img src="https://github.com/horseee/Diffusion_DeepCache/blob/master/static/images/sd_examples_high_res.png" width="100%">
 </div>
 
-### LDM-4-G for ImageNet (6.96x)
+### LDM-4-G for ImageNet (6.96x Acceleration)
 <div align="center">
   <img src="https://github.com/horseee/Diffusion_DeepCache/blob/master/static/images/imagenet.png" width="100%">
 </div>
 
-### DDPM for LSUN Church & Bedroom (1.48x)
+### DDPM for LSUN Church & Bedroom (1.48x Acceleration)
 <div align="center">
   <img src="https://github.com/horseee/Diffusion_DeepCache/blob/master/static/images/bedroom.png" width="100%">
   <img src="https://github.com/horseee/Diffusion_DeepCache/blob/master/static/images/church.png" width="100%">
