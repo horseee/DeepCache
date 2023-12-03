@@ -1,7 +1,8 @@
 # DeepCache: Accelerating Diffusion Models for Free
 <div align="center">
-  <img src="https://github.com/horseee/Diffusion_DeepCache/blob/master/static/images/example.gif" width="100%"></img>
+  <img src="https://github.com/horseee/Diffusion_DeepCache/blob/master/static/images/example.gif" width="100%" ></img>
 </div>
+
 
 > **DeepCache: Accelerating Diffusion Models for Free**   
 > [Xinyin Ma](https://horseee.github.io/), [Gongfan Fang](https://fangggf.github.io/), [Xinchao Wang](https://sites.google.com/site/sitexinchaowang/)   
