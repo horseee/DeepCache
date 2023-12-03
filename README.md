@@ -1,6 +1,9 @@
 # DeepCache: Accelerating Diffusion Models for Free
 <div align="center">
   <img src="assets/intro.png" width="100%" ></img>
+  <h6>
+      (Results on Stable Diffusion v1.5. Left: 50 PLMS steps. Right: Apply DeepCache upon 50 PLMS steps) 
+  </h6>
 </div>
 
 
