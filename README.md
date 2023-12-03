@@ -17,7 +17,7 @@ Diffusion models have recently gained unprecedented attention in the field of im
 
 The high-level features of U-Net can be heavily reused across the denoising process. In this case, only the shallow layers will be executed. 
 <div align="center">
-<img width="50%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/9ce3930c-c84c-4af8-8c6a-b6803a5a7b1d">
+<img width="70%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/9ce3930c-c84c-4af8-8c6a-b6803a5a7b1d">
 </div>
 
 ## Quick Start
