@@ -72,7 +72,8 @@ Currently, our code supports the models that can be loaded by [StableDiffusionPi
 
 ```python
 from DeepCache.pipeline_stable_diffusion import StableDiffusionPipeline
-pipe = DeepCacheStableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5', torch_dtype=torch.float16).to("cuda:0")
+pipe = StableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5', torch_dtype=torch.float16).to("cuda:0")
+prompt = "a photo of an astronaut on a moon"
 deepcache_output = pipe(
     prompt, 
     cache_interval=5, cache_layer_id=0, cache_block_id=0,
