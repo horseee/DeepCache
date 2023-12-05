@@ -124,7 +124,7 @@ Images in the upper line are the baselines, and the images in the lower line are
 <img width="80%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/e9bd7a8e-07c8-4296-95a2-12d008995807">
 </div>
 
-More results can be found in our [paper](https://drive.google.com/file/d/1ASsnP-Lk2m47TXAxXEYpaEymPMjNdch1/view?usp=sharing)
+More results can be found in our [paper](https://arxiv.org/abs/2312.00858)
 
 ## Bibtex
 ```
