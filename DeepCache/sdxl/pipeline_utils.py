@@ -315,8 +315,7 @@ def get_class_obj_and_candidates(library_name, class_name, importable_classes, p
     else:
         # else we just import it from the library. 
         if class_name == 'UNet2DConditionModel':
-            library_name = "DeepCache.unet_2d_condition"
-        
+            library_name = "DeepCache.sdxl.unet_2d_condition"
         
         library = importlib.import_module(library_name)
         class_obj = getattr(library, class_name)
