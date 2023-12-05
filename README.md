@@ -14,8 +14,18 @@
 
 ### Why DeepCache  
 * 🚀 Training-free and almost lossless
-* 🚀 Support Stable Diffusion, LDM and DDPM  
+* 🚀 Support Stable Diffusion, Stable Diffusion XL, LDM and DDPM  
 * 🚀 Compatible with sampling algorithms like DDIM and PLMS
+
+### Updates
+* December 6, 2023: Release the code for Stable Diffusion XL. The results of the `stabilityai/stable-diffusion-xl-base-1.0` are shown in the below figure, with the same prompts in the first figure.
+<div align="center">
+  <img src="assets/intro.png" width="90%" ></img>
+  <h6>
+      (2.6x acceleration of Stable Diffusion XL. ) 
+  </h6>
+</div>
+
 
 ### Introduction
 We introduce **DeepCache**, a novel **training-free and almost lossless** paradigm that accelerates diffusion models from the perspective of model architecture. Utilizing the property of the U-Net, we reuse the high-level features while updating the low-level features in a very cheap way. DeepCache accelerates 2.3x for Stable Diffusion v1.5 with only a 0.05 decline in CLIP Score, and 4.1x for LDM-4-G(ImageNet) with a 0.22 decrease in FID.
@@ -31,6 +41,28 @@ We introduce **DeepCache**, a novel **training-free and almost lossless** paradi
 pip install diffusers==0.21.4 transformers
 ```
 
+### Stable Diffusion XL
+```bash
+python stable_diffusion_xl.py --model stabilityai/stable-diffusion-xl-base-1.0
+```
+
+Output:
+<details>
+
+```bash
+Loading pipeline components...: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:01<00:00,  6.62it/s]
+2023-12-06 01:44:28,578 - INFO - Running baseline...
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:17<00:00,  2.93it/s]
+2023-12-06 01:44:46,095 - INFO - Baseline: 17.52 seconds
+Loading pipeline components...: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:00<00:00,  8.06it/s]
+2023-12-06 01:45:02,865 - INFO - Running DeepCache...
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:06<00:00,  8.01it/s]
+2023-12-06 01:45:09,573 - INFO - DeepCache: 6.71 seconds
+2023-12-06 01:45:10,678 - INFO - Saved to output.png. Done!
+```
+
+</details>
+
 
 ### Stable Diffusion v1.5
 ```bash
@@ -38,6 +70,8 @@ python stable_diffusion.py --model runwayml/stable-diffusion-v1-5
 ```
 
 Output:
+<details>
+
 ```bash
 2023-12-03 16:18:13,636 - INFO - Loaded safety_checker as StableDiffusionSafetyChecker from `safety_checker` subfolder of runwayml/stable-diffusion-v1-5.
 2023-12-03 16:18:13,699 - INFO - Loaded vae as AutoencoderKL from `vae` subfolder of runwayml/stable-diffusion-v1-5.
@@ -51,6 +85,8 @@ Loading pipeline components...: 100%|██████████████�
 2023-12-03 16:18:27,935 - INFO - Saved to output.png. Done!
 ```
 
+</details>
+
 ### Stable Diffusion v2.1
 
 ```bash
@@ -58,6 +94,8 @@ python stable_diffusion.py --model stabilityai/stable-diffusion-2-1
 ```
 
 Output:
+<details>
+
 ```bash
 2023-12-03 16:21:17,858 - INFO - Loaded feature_extractor as CLIPImageProcessor from `feature_extractor` subfolder of stabilityai/stable-diffusion-2-1.
 2023-12-03 16:21:17,864 - INFO - Loaded scheduler as DDIMScheduler from `scheduler` subfolder of stabilityai/stable-diffusion-2-1.
@@ -70,6 +108,9 @@ Loading pipeline components...: 100%|██████████████�
 2023-12-03 16:22:12,911 - INFO - DeepCache: 8.36 seconds
 2023-12-03 16:22:13,417 - INFO - Saved to output.png. Done!
 ```
+
+</details>
+
 Currently, our code supports the models that can be loaded by [StableDiffusionPipeline](https://huggingface.co/docs/diffusers/v0.24.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). You can specify the model name by the argument `--model`, which by default, is `runwayml/stable-diffusion-v1-5`. We are arranging the code for LDM and DDPM and will release it in the next few days.
 
 ### Usage
@@ -91,7 +132,6 @@ Arguments:
 * **cache_layer_id & cache_block_id**: the block/layer ID of selected skip branch. 
 * **uniform**: whether to adopt uniform caching strategy of not.
 * **pow & center**: the hyperparameters for non-uniform 1:N strategy.
-
 
 
 ## Visualization
