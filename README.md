@@ -116,8 +116,25 @@ Currently, our code supports the models that can be loaded by [StableDiffusionPi
 
 ### Usage
 
+* For Stable Diffusion XL (Only the base model currently)
 ```python
-from DeepCache.pipeline_stable_diffusion import StableDiffusionPipeline
+import torch
+from DeepCache import StableDiffusionXLPipeline as DeepCacheStableDiffusionXLPipeline
+pipe = DeepCacheStableDiffusionXLPipeline.from_pretrained(
+    "stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+).to("cuda:0")
+prompt = "A photo of a cat. Focus light and create sharp, defined edges."        
+deepcache_output = pipe(
+    prompt, 
+    cache_interval=3, cache_layer_id=0, cache_block_id=0,
+    output_type='pt', return_dict=True
+).images
+```
+
+* For Stable Diffusion 
+```python
+import torch
+from DeepCache import StableDiffusionPipeline
 pipe = StableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5', torch_dtype=torch.float16).to("cuda:0")
 prompt = "a photo of an astronaut on a moon"
 deepcache_output = pipe(

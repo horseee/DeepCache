@@ -35,7 +35,7 @@ if __name__ == "__main__":
     logging.info("Warming up GPU...")
     for _ in range(2):
         set_random_seed(seed)
-        image_ori = baseline_pipe(prompt, output_type='pt').images
+        _ = baseline_pipe(prompt, output_type='pt').images
         
     # Baseline
     logging.info("Running baseline...")
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     logging.info("Warming up GPU...")
     for _ in range(2):
         set_random_seed(seed)
-        image_ori = pipe(
+        _ = pipe(
             prompt, 
             cache_interval=3, cache_layer_id=0, cache_block_id=0,
             output_type='pt', return_dict=True

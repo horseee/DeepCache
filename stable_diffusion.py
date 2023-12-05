@@ -30,7 +30,7 @@ if __name__ == "__main__":
     logging.info("Warming up GPU...")
     for _ in range(2):
         set_random_seed(seed)
-        image_ori = baseline_pipe(prompt, output_type='pt').images
+        _ = baseline_pipe(prompt, output_type='pt').images
         
     # Baseline
     logging.info("Running baseline...")
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     logging.info("Warming up GPU...")
     for _ in range(2):
         set_random_seed(seed)
-        image_ori = pipe(prompt, output_type='pt', return_dict=True).images
+        _ = pipe(prompt, output_type='pt', return_dict=True).images
 
     logging.info("Running DeepCache...")
     set_random_seed(seed)
