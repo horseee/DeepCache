@@ -1,11 +1,12 @@
 # DeepCache: Accelerating Diffusion Models for Free
 <div align="center">
   <img src="assets/intro.png" width="100%" ></img>
-  <h6>
+  <br>
+  <em>
       (Results on Stable Diffusion v1.5. Left: 50 PLMS steps. Right: 2.3x acceleration upon 50 PLMS steps) 
-  </h6>
+  </em>
 </div>
-
+<br>
 
 > **DeepCache: Accelerating Diffusion Models for Free**   
 > [Xinyin Ma](https://horseee.github.io/), [Gongfan Fang](https://fangggf.github.io/), [Xinchao Wang](https://sites.google.com/site/sitexinchaowang/)   
@@ -21,9 +22,10 @@
 * **December 6, 2023**: Release the code for **Stable Diffusion XL**. The results of the `stabilityai/stable-diffusion-xl-base-1.0` are shown in the below figure, with the same prompts from the first figure.
 <div align="center">
   <img src="assets/sdxl.png" width="90%" ></img>
-  <h6>
+  <br>
+  <em>
       (2.6x acceleration of Stable Diffusion XL) 
-  </h6>
+  </em>
 </div>
 
 
