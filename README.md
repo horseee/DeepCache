@@ -18,11 +18,11 @@
 * 🚀 Compatible with sampling algorithms like DDIM and PLMS
 
 ### Updates
-* **December 6, 2023**: Release the code for **Stable Diffusion XL**. The results of the `stabilityai/stable-diffusion-xl-base-1.0` are shown in the below figure, with the same prompts in the first figure.
+* **December 6, 2023**: Release the code for **Stable Diffusion XL**. The results of the `stabilityai/stable-diffusion-xl-base-1.0` are shown in the below figure, with the same prompts from the first figure.
 <div align="center">
   <img src="assets/sdxl.png" width="90%" ></img>
   <h6>
-      (2.6x acceleration of Stable Diffusion XL. ) 
+      (2.6x acceleration of Stable Diffusion XL) 
   </h6>
 </div>
 
