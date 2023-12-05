@@ -10,7 +10,7 @@
 > **DeepCache: Accelerating Diffusion Models for Free**   
 > [Xinyin Ma](https://horseee.github.io/), [Gongfan Fang](https://fangggf.github.io/), [Xinchao Wang](https://sites.google.com/site/sitexinchaowang/)   
 > [Learning and Vision Lab](http://lv-nus.org/), National University of Singapore  
-> 🥯[[Paper]](https://drive.google.com/file/d/1ASsnP-Lk2m47TXAxXEYpaEymPMjNdch1/view?usp=sharing) 🗞️[[Arxiv]]()(Coming Soon)🎄[[Project Page]](https://horseee.github.io/Diffusion_DeepCache/)
+> 🥯[[Arxiv]](https://arxiv.org/abs/2312.00858)🎄[[Project Page]](https://horseee.github.io/Diffusion_DeepCache/)
 
 ### Introduction
 
@@ -128,6 +128,14 @@ More results can be found in our [paper](https://drive.google.com/file/d/1ASsnP-
 
 ## Bibtex
 ```
+@misc{ma2023deepcache,
+      title={DeepCache: Accelerating Diffusion Models for Free}, 
+      author={Xinyin Ma and Gongfan Fang and Xinchao Wang},
+      year={2023},
+      eprint={2312.00858},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
 ```
 
 
