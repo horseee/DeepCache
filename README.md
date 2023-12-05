@@ -12,8 +12,12 @@
 > [Learning and Vision Lab](http://lv-nus.org/), National University of Singapore  
 > 🥯[[Arxiv]](https://arxiv.org/abs/2312.00858)🎄[[Project Page]](https://horseee.github.io/Diffusion_DeepCache/)
 
-### Introduction
+### Why DeepCache  
+* 🚀 Training-free and almost lossless
+* 🚀 Support Stable Diffusion, LDM and DDPM  
+* 🚀 Compatible with sampling algorithms like DDIM and PLMS
 
+### Introduction
 We introduce **DeepCache**, a novel **training-free and almost lossless** paradigm that accelerates diffusion models from the perspective of model architecture. Utilizing the property of the U-Net, we reuse the high-level features while updating the low-level features in a very cheap way. DeepCache accelerates 2.3x for Stable Diffusion v1.5 with only a 0.05 decline in CLIP Score, and 4.1x for LDM-4-G(ImageNet) with a 0.22 decrease in FID.
 
 <div align="center">
