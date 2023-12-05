@@ -148,7 +148,7 @@ deepcache_output = pipe(
 ```
 
 Arguments:
-* **cache_interval**: the interval (N in the 1:N strategy) of cache update. Disable DeepCache when cache_interval=1.
+* **cache_interval**: the interval (N in the 1:N strategy) of cache update. Larger intervals bring more significant speedup.
 * **cache_layer_id & cache_block_id**: the block/layer ID of the selected skip branch. 
 * **uniform**: whether to enable the uniform caching strategy.
 * **pow & center**: the hyperparameters for non-uniform 1:N strategy.
