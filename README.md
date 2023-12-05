@@ -20,7 +20,7 @@
 ### Updates
 * December 6, 2023: Release the code for Stable Diffusion XL. The results of the `stabilityai/stable-diffusion-xl-base-1.0` are shown in the below figure, with the same prompts in the first figure.
 <div align="center">
-  <img src="assets/intro.png" width="90%" ></img>
+  <img src="assets/sdxl.png" width="90%" ></img>
   <h6>
       (2.6x acceleration of Stable Diffusion XL. ) 
   </h6>
