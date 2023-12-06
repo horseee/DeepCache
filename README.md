@@ -1,6 +1,6 @@
 # DeepCache: Accelerating Diffusion Models for Free
 <div align="center">
-  <img src="assets/intro.png" width="100%" ></img>
+  <img src="https://github.com/horseee/Diffusion_DeepCache/blob/master/static/images/example_compress.gif" width="100%" ></img>
   <br>
   <em>
       (Results on Stable Diffusion v1.5. Left: 50 PLMS steps. Right: 2.3x acceleration upon 50 PLMS steps) 
