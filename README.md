@@ -66,6 +66,7 @@ Loading pipeline components...: 100%|██████████████�
 
 </details>
 
+You can add `--refine` at the end of the command to activate the refiner model for SDXL.
 
 ### Stable Diffusion v1.5
 ```bash
