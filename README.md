@@ -190,6 +190,14 @@ Images in the upper line are the baselines, and the images in the lower line are
 
 More results can be found in our [paper](https://arxiv.org/abs/2312.00858)
 
+## Other Implementations and Plugins
+We are sincerely grateful to the authors listed below who implemented DeepCache in plugins or other contexts. 
+* Comfyui: https://gist.github.com/laksjdjf/435c512bc19636e9c9af4ee7bea9eb86 by [laksjdjf](https://github.com/laksjdjf)
+* Gradio: https://github.com/camenduru/DeepCache-colab by [camenduru](https://github.com/camenduru/DeepCache-colab)
+
+We warmly welcome contributions from everyone. Please feel free to reach out to us.
+
+
 ## Bibtex
 ```
 @misc{ma2023deepcache,
