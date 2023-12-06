@@ -1,6 +1,6 @@
 # DeepCache: Accelerating Diffusion Models for Free
 <div align="center">
-  <img src="assets/intro.png" width="100%" ></img>
+  <img src="https://github.com/horseee/Diffusion_DeepCache/blob/master/static/images/example_compress.gif" width="100%" ></img>
   <br>
   <em>
       (Results on Stable Diffusion v1.5. Left: 50 PLMS steps. Right: 2.3x acceleration upon 50 PLMS steps) 
@@ -30,7 +30,7 @@
 
 
 ### Introduction
-We introduce **DeepCache**, a novel **training-free and almost lossless** paradigm that accelerates diffusion models from the perspective of model architecture. Utilizing the property of the U-Net, we reuse the high-level features while updating the low-level features in a very cheap way. DeepCache accelerates 2.3x for Stable Diffusion v1.5 with only a 0.05 decline in CLIP Score, and 4.1x for LDM-4-G(ImageNet) with a 0.22 decrease in FID.
+We introduce **DeepCache**, a novel **training-free and almost lossless** paradigm that accelerates diffusion models from the perspective of model architecture. Utilizing the property of the U-Net, we reuse the high-level features while updating the low-level features in a very cheap way. DeepCache accelerates Stable Diffusion v1.5 by 2.3x with only a 0.05 decline in CLIP Score, and LDM-4-G(ImageNet) by 4.1x with a 0.22 decrease in FID.
 
 <div align="center">
 <img width="50%" alt="image" src="https://github.com/horseee/DeepCache/assets/18592211/9ce3930c-c84c-4af8-8c6a-b6803a5a7b1d">
@@ -189,6 +189,14 @@ Images in the upper line are the baselines, and the images in the lower line are
 </div>
 
 More results can be found in our [paper](https://arxiv.org/abs/2312.00858)
+
+## Other Implementations and Plugins
+We are sincerely grateful to the authors listed below who implemented DeepCache in plugins or other contexts. 
+* Comfyui: https://gist.github.com/laksjdjf/435c512bc19636e9c9af4ee7bea9eb86 by @[laksjdjf](https://github.com/laksjdjf)
+* Colab & Gradio: https://github.com/camenduru/DeepCache-colab by @[camenduru](https://github.com/camenduru/DeepCache-colab)
+
+We warmly welcome contributions from everyone. Please feel free to reach out to us.
+
 
 ## Bibtex
 ```
