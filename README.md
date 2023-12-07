@@ -40,7 +40,7 @@ We introduce **DeepCache**, a novel **training-free and almost lossless** paradi
 
 ### Requirements
 ```bash
-pip install diffusers==0.21.4 transformers
+pip install transformers diffusers # diffusers==0.21.4
 ```
 
 ### Stable Diffusion XL
