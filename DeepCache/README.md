@@ -1,11 +1,12 @@
 
-## Code
+# Code
 
-### TOC
+## TOC
 - [Explanation of Code for SD/SDXL](#code-for-sd-and-sdxl)
 - [Code for DDPM](#experiment-code-for-ddpm)
+- [MACs Calculation](#macs-calculation)
 
-### Explanation of Code for SD and SDXL
+## Explanation of Code for SD and SDXL
 
 We make some modifications to the code for SD and SDXL. Here we use the code of SD as an example to highlight the key changes:
 
@@ -23,7 +24,7 @@ Adjusted the forward functions of `CrossAttnDownBlock2D` and `CrossAttnUpBlock2D
 4. `unet_2d_condition.py`:
 Altered the forward function (Lines 957-1142) to also reuse or cache features.
 
-### Experiment Code for DDPM
+## Experiment Code for DDPM
 
 #### Requirement
 ```
@@ -44,10 +45,10 @@ python fid.py --path runtime_log/{YOUR_PATH_FOR_IMAGES}/images npz/cifar10_fid.n
 ```
 The pre-calculated npz archive for these three datasets can be downloaded [here](https://drive.google.com/file/d/1oAb3Jik40mExmUhWcF990IRDY5UvT1rh/view?usp=sharing). The npz archives are generated following [the instruction](https://github.com/mseitzer/pytorch-fid?tab=readme-ov-file#generating-a-compatible-npz-archive-from-a-dataset) in `pytorch-fid`.
 
-#### MACs Calculation
+## MACs Calculation
 If you want to calculate the FLOPs for each model, and also the FLOPs of the partial model executed in DeepCache, you can use the following code snippet, insert it before the iteration of denoising, and get the MACs of the model. Here are two examples:
 
-* For DDPM: (insert it in [Line](https://github.com/horseee/DeepCache/blob/fb0ec94e046068eceebe185b2f5cada55b11be1e/DeepCache/ddpm/ddpm/runners/deepcache.py#L153))
+* For DDPM: (insert it in [Line 153](https://github.com/horseee/DeepCache/blob/fb0ec94e046068eceebe185b2f5cada55b11be1e/DeepCache/ddpm/ddpm/runners/deepcache.py#L153) for DDPM pipeline)
 ```python
 import sys
 sys.path.append('../')
