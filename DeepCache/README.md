@@ -64,7 +64,7 @@ self.logger.log("#Params: {:.4f} M".format(nparams/1e6))
 self.logger.log("#MACs: {:.4f} G".format(macs/1e9))
 exit()
 ```
-You can set `layer_wise` to `True` to see the FLOPs for each module.
+You can enable `layer_wise` to `True` to display the FLOPs for each module. If you are using a different branch for caching, you might need to check and update the `prv_f` shape.
 
 * For Stable Diffusion: (insert it in [Line 752](https://github.com/horseee/DeepCache/blob/fb0ec94e046068eceebe185b2f5cada55b11be1e/DeepCache/sd/pipeline_stable_diffusion.py#L752) for SD pipeline)
 ```python
@@ -85,7 +85,7 @@ print("#Params: {:.4f} M".format(nparams/1e6))
 print("#MACs: {:.4f} G".format(macs/1e9))
 exit() 
 ```
-You can set `layer_wise` to `True` to see the FLOPs for each module.
+To view the FLOPs for each module, you can set the `layer_wise` parameter to `True`. Additionally, if you want to see the FLOPs for the partial model executed during the retrieve steps, you can find the results in the second step with `cache_interval` larger than 2.
 
 
 
