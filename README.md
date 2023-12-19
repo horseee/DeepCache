@@ -202,13 +202,11 @@ We warmly welcome contributions from everyone. Please feel free to reach out to 
 
 ## Bibtex
 ```
-@misc{ma2023deepcache,
-      title={DeepCache: Accelerating Diffusion Models for Free}, 
-      author={Xinyin Ma and Gongfan Fang and Xinchao Wang},
-      year={2023},
-      eprint={2312.00858},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{ma2023deepcache,
+  title={DeepCache: Accelerating Diffusion Models for Free},
+  author={Ma, Xinyin and Fang, Gongfan and Wang, Xinchao},
+  journal={arXiv preprint arXiv:2312.00858},
+  year={2023}
 }
 ```
 
