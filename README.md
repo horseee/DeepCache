@@ -116,7 +116,10 @@ Loading pipeline components...: 100%|██████████████�
 
 </details>
 
-Currently, our code supports the models that can be loaded by [StableDiffusionPipeline](https://huggingface.co/docs/diffusers/v0.24.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). You can specify the model name by the argument `--model`, which by default, is `runwayml/stable-diffusion-v1-5`. We are arranging the code for LDM and DDPM and will release it in the next few days.
+Currently, our code supports the models that can be loaded by [StableDiffusionPipeline](https://huggingface.co/docs/diffusers/v0.24.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). You can specify the model name by the argument `--model`, which by default, is `runwayml/stable-diffusion-v1-5`. 
+
+### DDPM and LDM
+Please check [here]() for the code of DDPM. The code for LDM will be released soon.
 
 ### Usage
 
