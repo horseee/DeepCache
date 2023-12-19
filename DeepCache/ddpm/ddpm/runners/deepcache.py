@@ -136,20 +136,15 @@ class Diffusion(object):
             
             model = self.accelerator.prepare(model)
         else:
-            # This used the pretrained DDPM model, see https://github.com/pesser/pytorch_diffusion
-            if self.config.data.dataset == 'CELEBA':
-                ckpt = '../DynamicDiffuser/atlas/celeba/ckpt.pth'
-                msg = model.load_state_dict(torch.load(ckpt, map_location=self.device)[4])
+            if self.config.data.dataset == "CIFAR10":
+                name = "cifar10"
+            elif self.config.data.dataset == "LSUN":
+                name = f"lsun_{self.config.data.category}"
             else:
-                if self.config.data.dataset == "CIFAR10":
-                    name = "cifar10"
-                elif self.config.data.dataset == "LSUN":
-                    name = f"lsun_{self.config.data.category}"
-                else:
-                    raise ValueError
-                ckpt = get_ckpt_path(f"ema_{name}")
-                self.logger.log("Loading checkpoint {}".format(ckpt))
-                msg = model.load_state_dict(torch.load(ckpt, map_location=self.device), strict=False)
+                raise ValueError
+            ckpt = get_ckpt_path(f"ema_{name}")
+            self.logger.log("Loading checkpoint {}".format(ckpt))
+            msg = model.load_state_dict(torch.load(ckpt, map_location=self.device), strict=False)
 
             self.logger.log(msg)
             model = self.accelerator.prepare(model)

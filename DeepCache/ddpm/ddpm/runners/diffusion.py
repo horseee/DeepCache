@@ -237,21 +237,9 @@ class Diffusion(object):
             
 
     def sample(self):
-        if self.args.dyn:
-            from ..models.dyndiffusion import Model
-            model = Model(self.config)
-            print('Sampling in dynamic model')
-        else:
-            from ..models.diffusion import Model
-            model = Model(self.config)
+        from ..models.diffusion import Model
+        model = Model(self.config)
         
-        #dataset_name = self.args.config[8:-4]
-        #if dataset_name == 'cifar10':
-        #    path = "/local_home/maxinyin/Diff-Pruning/exp_code/run/finetune_simple_v2/cifar10_ours_T=0.05.pth/logs/post_training/pruned_model.pth"
-        #else:
-        #    path = '/local_home/maxinyin/Diff-Pruning/exp_code/run/pruned/bedroom_ddpm_random_0.3.pth'
-        #model = torch.load(path)
-        #model = self.accelerator.prepare(model)
         if not self.args.use_pretrained:
             if getattr(self.config.sampling, "ckpt_id", None) is None:
                 states = torch.load(
@@ -278,35 +266,21 @@ class Diffusion(object):
             
             model = self.accelerator.prepare(model)
         else:
-            if self.config.data.dataset == 'CELEBA':
-                ckpt = '../DynamicDiffuser/atlas/celeba/ckpt.pth'
-                model.load_state_dict(torch.load(ckpt, map_location=self.device)[4])
+            # This used the pretrained DDPM model, see https://github.com/pesser/pytorch_diffusion
+            if self.config.data.dataset == "CIFAR10":
+                name = "cifar10"
+            elif self.config.data.dataset == "LSUN":
+                name = f"lsun_{self.config.data.category}"
             else:
-                # This used the pretrained DDPM model, see https://github.com/pesser/pytorch_diffusion
-                if self.config.data.dataset == "CIFAR10":
-                    name = "cifar10"
-                elif self.config.data.dataset == "LSUN":
-                    name = f"lsun_{self.config.data.category}"
-                else:
-                    raise ValueError
-                ckpt = get_ckpt_path(f"ema_{name}")
-                self.logger.log("Loading checkpoint {}".format(ckpt))
-                msg = model.load_state_dict(torch.load(ckpt, map_location=self.device), strict=False)
-                self.logger.log(msg)
+                raise ValueError
+            ckpt = get_ckpt_path(f"ema_{name}")
+            self.logger.log("Loading checkpoint {}".format(ckpt))
+            msg = model.load_state_dict(torch.load(ckpt, map_location=self.device), strict=False)
+            self.logger.log(msg)
             
             model = self.accelerator.prepare(model)
         
         model.eval()
-
-        #from ..utils.flops import count_ops_and_params
-        #example_inputs = {
-        #    'x': torch.randn(1, 3, self.config.data.image_size, self.config.data.image_size).to(self.device), 
-        #    't': torch.ones(1).to(self.device)
-        #}
-        #macs, nparams = count_ops_and_params(model, example_inputs=example_inputs, layer_wise=True)
-        #self.logger.log("#Params: {:.4f} M".format(nparams/1e6))
-        #self.logger.log("#MACs: {:.4f} G".format(macs/1e9))
-        #exit()
 
         if self.args.fid:
             self.sample_fid(model)

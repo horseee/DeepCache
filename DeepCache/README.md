@@ -27,7 +27,7 @@ Altered the forward function (Lines 957-1142) to also reuse or cache features.
 
 #### Requirement
 ```
-pip install accelerate lmdb scipy diffusers
+pip install accelerate lmdb scipy diffusers pytorch_fid
 ```
 
 #### Instructions
