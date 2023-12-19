@@ -40,7 +40,7 @@ We introduce **DeepCache**, a novel **training-free and almost lossless** paradi
 
 ### Requirements
 ```bash
-pip install diffusers==0.21.4 transformers
+pip install transformers diffusers==0.21.4
 ```
 
 ### Stable Diffusion XL
@@ -66,6 +66,7 @@ Loading pipeline components...: 100%|██████████████�
 
 </details>
 
+You can add `--refine` at the end of the command to activate the refiner model for SDXL.
 
 ### Stable Diffusion v1.5
 ```bash
@@ -194,19 +195,18 @@ More results can be found in our [paper](https://arxiv.org/abs/2312.00858)
 We are sincerely grateful to the authors listed below who implemented DeepCache in plugins or other contexts. 
 * Comfyui: https://gist.github.com/laksjdjf/435c512bc19636e9c9af4ee7bea9eb86 by @[laksjdjf](https://github.com/laksjdjf)
 * Colab & Gradio: https://github.com/camenduru/DeepCache-colab by @[camenduru](https://github.com/camenduru/DeepCache-colab)
+* WebUI: https://github.com/AUTOMATIC1111/stable-diffusion-webui/pull/14210 by @[aria1th](https://github.com/aria1th)
 
 We warmly welcome contributions from everyone. Please feel free to reach out to us.
 
 
 ## Bibtex
 ```
-@misc{ma2023deepcache,
-      title={DeepCache: Accelerating Diffusion Models for Free}, 
-      author={Xinyin Ma and Gongfan Fang and Xinchao Wang},
-      year={2023},
-      eprint={2312.00858},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{ma2023deepcache,
+  title={DeepCache: Accelerating Diffusion Models for Free},
+  author={Ma, Xinyin and Fang, Gongfan and Wang, Xinchao},
+  journal={arXiv preprint arXiv:2312.00858},
+  year={2023}
 }
 ```
 
