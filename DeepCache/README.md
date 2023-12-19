@@ -2,12 +2,12 @@
 ## Code
 
 ### TOC
-- [Code for SD/SDXL](#code-for-sd-and-sdxl)
+- [Explanation of Code for SD/SDXL](#code-for-sd-and-sdxl)
 - [Code for DDPM](#experiment-code-for-ddpm)
 
-### Code for SD and SDXL
+### Explanation of Code for SD and SDXL
 
-We make some modifications to the code for SD and SDXL. Here use the code of SD as an example to highlight the key changes:
+We make some modifications to the code for SD and SDXL. Here we use the code of SD as an example to highlight the key changes:
 
 1. `pipeline_stable_diffusion.py`:
 
@@ -27,7 +27,7 @@ Altered the forward function (Lines 957-1142) to also reuse or cache features.
 
 #### Requirement
 ```
-pip install accelerate lmdb scipy
+pip install accelerate lmdb scipy diffusers
 ```
 
 #### Instructions
