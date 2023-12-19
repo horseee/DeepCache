@@ -119,7 +119,7 @@ Currently, our code supports the models that can be loaded by [StableDiffusionPi
 
 ### Usage
 
-* For Stable Diffusion XL (Only the base model currently)
+* For Stable Diffusion XL
 ```python
 import torch
 from DeepCache import StableDiffusionXLPipeline as DeepCacheStableDiffusionXLPipeline
