@@ -17,7 +17,6 @@ from ..functions.ckpt_util import get_ckpt_path
 import torchvision.utils as tvu
 
 from ..utils import tools
-from ..utils.fid import calculate_fid
 
 def torch2hwcuint8(x, clip=False):
     if clip:
