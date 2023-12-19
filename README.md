@@ -19,6 +19,7 @@
 * 🚀 Compatible with sampling algorithms like DDIM and PLMS
 
 ### Updates
+* **December 20, 2023**: Release the code for **DDPM**. See [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the code and instruction.
 * **December 6, 2023**: Release the code for **Stable Diffusion XL**. The results of the `stabilityai/stable-diffusion-xl-base-1.0` are shown in the below figure, with the same prompts from the first figure.
 <div align="center">
   <img src="assets/sdxl.png" width="90%" ></img>
