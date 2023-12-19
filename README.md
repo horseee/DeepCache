@@ -19,7 +19,7 @@
 * 🚀 Compatible with sampling algorithms like DDIM and PLMS
 
 ### Updates
-* **December 20, 2023**: Release the code for **DDPM**. See [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the code and instruction.
+* **December 20, 2023**: Release the code for **DDPM**. See [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the experimental code and instructions.
 * **December 6, 2023**: Release the code for **Stable Diffusion XL**. The results of the `stabilityai/stable-diffusion-xl-base-1.0` are shown in the below figure, with the same prompts from the first figure.
 <div align="center">
   <img src="assets/sdxl.png" width="90%" ></img>
@@ -119,7 +119,7 @@ Loading pipeline components...: 100%|██████████████�
 Currently, our code supports the models that can be loaded by [StableDiffusionPipeline](https://huggingface.co/docs/diffusers/v0.24.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). You can specify the model name by the argument `--model`, which by default, is `runwayml/stable-diffusion-v1-5`. 
 
 ### DDPM and LDM
-Please check [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the code of DDPM. The code for LDM will be released soon.
+Please check [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the experimental code of DDPM. The code for LDM will be released soon.
 
 ### Usage
 
