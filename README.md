@@ -27,7 +27,9 @@
       (1.7x acceleration of SVD-XT) 
   </em>
 </div>
+
 * **December 20, 2023**: Release the code for **DDPM**. See [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the experimental code and instructions.
+
 * **December 6, 2023**: Release the code for **Stable Diffusion XL**. The results of the `stabilityai/stable-diffusion-xl-base-1.0` are shown in the below figure, with the same prompts from the first figure.
 <div align="center">
   <img src="assets/sdxl.png" width="90%" ></img>
@@ -150,9 +152,9 @@ Loading pipeline components...: 100%|██████████████�
 ### DDPM and LDM
 Please check [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the experimental code of DDPM. The code for LDM will be released soon.
 
-### Usage
+## Usage
 
-* For Stable Diffusion XL
+### For Stable Diffusion XL
 ```python
 import torch
 from DeepCache import StableDiffusionXLPipeline as DeepCacheStableDiffusionXLPipeline
@@ -167,7 +169,7 @@ deepcache_output = pipe(
 ).images
 ```
 
-* For Stable Diffusion 
+### For Stable Diffusion 
 ```python
 import torch
 from DeepCache import StableDiffusionPipeline
@@ -187,7 +189,7 @@ Arguments:
 * **uniform**: whether to enable the uniform caching strategy.
 * **pow & center**: the hyperparameters for non-uniform 1:N strategy.
 
-* For Stable Video Diffusion
+### For Stable Video Diffusion
 ```python
 import torch
 from diffusers.utils import load_image, export_to_video
