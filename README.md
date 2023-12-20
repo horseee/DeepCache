@@ -15,10 +15,18 @@
 
 ### Why DeepCache  
 * 🚀 Training-free and almost lossless
-* 🚀 Support Stable Diffusion, Stable Diffusion XL
+* 🚀 Support Stable Diffusion, Stable Diffusion XL, Stable Video Diffusion, DDPM
 * 🚀 Compatible with sampling algorithms like DDIM and PLMS
 
 ### Updates
+* **December 21, 2023** Release the code for **Stable Video Diffusion**. The upper line shows the original videos, and the below line is accelerated by DeepCache.
+<div align="center">
+  <img src="assets/svd.gif" width="90%" ></img>
+  <br>
+  <em>
+      (1.7x acceleration of SVD-XT) 
+  </em>
+</div>
 * **December 20, 2023**: Release the code for **DDPM**. See [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the experimental code and instructions.
 * **December 6, 2023**: Release the code for **Stable Diffusion XL**. The results of the `stabilityai/stable-diffusion-xl-base-1.0` are shown in the below figure, with the same prompts from the first figure.
 <div align="center">
@@ -118,6 +126,27 @@ Loading pipeline components...: 100%|██████████████�
 
 Currently, our code supports the models that can be loaded by [StableDiffusionPipeline](https://huggingface.co/docs/diffusers/v0.24.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline). You can specify the model name by the argument `--model`, which by default, is `runwayml/stable-diffusion-v1-5`. 
 
+### Stable Video Diffusion 
+```bash
+python stable_video_diffusion.py
+```
+
+<details>
+  <summary>Output:</summary>
+  
+```bash
+Loading pipeline components...: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00,  8.36it/s]
+2023-12-21 04:56:47,329 - INFO - Running baseline...
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 25/25 [01:27<00:00,  3.49s/it]
+2023-12-21 04:58:26,121 - INFO - Origin: 98.66 seconds
+Loading pipeline components...: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 10.59it/s]
+2023-12-21 04:58:27,202 - INFO - Running DeepCache...
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 25/25 [00:49<00:00,  1.96s/it]
+2023-12-21 04:59:26,607 - INFO - DeepCache: 59.31 seconds
+```
+
+</details>
+
 ### DDPM and LDM
 Please check [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the experimental code of DDPM. The code for LDM will be released soon.
 
@@ -157,6 +186,32 @@ Arguments:
 * **cache_layer_id & cache_block_id**: the block/layer ID of the selected skip branch. 
 * **uniform**: whether to enable the uniform caching strategy.
 * **pow & center**: the hyperparameters for non-uniform 1:N strategy.
+
+* For Stable Video Diffusion
+```python
+import torch
+from diffusers.utils import load_image, export_to_video
+from DeepCache.svd.pipeline_stable_video_diffusion import StableVideoDiffusionPipeline as DeepCacheStableVideoDiffusionPipeline
+
+deepcache_pipe = DeepCacheStableVideoDiffusionPipeline.from_pretrained(
+    "stabilityai/stable-video-diffusion-img2vid-xt", torch_dtype=torch.float16, variant="fp16",
+)
+deepcache_pipe.enable_model_cpu_offload()
+
+image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/svd/rocket.png?download=true")
+image = image.resize((1024, 576))
+
+generator = torch.manual_seed(42)
+frames = deepcache_pipe(
+    image, 
+    decode_chunk_size=8, generator=generator,
+    cache_interval=3, cache_branch=0,
+).frames[0]
+```
+
+Arguments:
+* **cache_interval**: the interval (N in the 1:N strategy) of cache update. Larger intervals bring more significant speedup, but would impair the quality of the video.
+* **cache_branch**: the selected skip branch. Select `cache_branch` from 0-10
 
 
 ## Visualization
