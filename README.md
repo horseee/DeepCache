@@ -253,7 +253,7 @@ More results can be found in our [paper](https://arxiv.org/abs/2312.00858)
 ## Other Implementations and Plugins
 We sincerely thank the authors listed below who implemented DeepCache in plugins or other contexts. 
 
-* OneDiff Integration: https://github.com/Oneflow-Inc/onediff/pull/426 by @[Oneflow-Inc](https://github.com/Oneflow-Inc)
+* OneDiff Integration: https://github.com/Oneflow-Inc/onediff?tab=readme-ov-file#easy-to-use by @[Oneflow-Inc](https://github.com/Oneflow-Inc)
 * Comfyui: https://gist.github.com/laksjdjf/435c512bc19636e9c9af4ee7bea9eb86 by @[laksjdjf](https://github.com/laksjdjf)
 * Colab & Gradio: https://github.com/camenduru/DeepCache-colab by @[camenduru](https://github.com/camenduru/DeepCache-colab)
 * WebUI: https://github.com/AUTOMATIC1111/stable-diffusion-webui/pull/14210 by @[aria1th](https://github.com/aria1th)
