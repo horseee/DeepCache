@@ -60,16 +60,15 @@ if __name__ == "__main__":
     logging.info("Running DeepCache...")
     set_random_seed(seed)
     start_time = time.time()
-    cache_interval = 5
     deepcache_output = pipe(
         prompt, 
-        cache_interval=cache_interval, cache_layer_id=0, cache_block_id=0,
+        cache_interval=3, cache_layer_id=0, cache_block_id=0,
         uniform=True,
     ).images
     
     use_time = time.time() - start_time
     deepcache_output = [(r * 255).astype("uint8") for r in deepcache_output]
-    imageio.mimsave(f"deepcache_{cache_interval}_video.gif", deepcache_output, fps=4, loop=0)
+    imageio.mimsave(f"deepcache_video.gif", deepcache_output, fps=4, loop=0)
     logging.info("DeepCache: {:.2f} seconds".format(use_time))
 
 
