@@ -624,8 +624,7 @@ class TextToVideoZeroPipeline(StableDiffusionPipeline):
         extra_step_kwargs = self.prepare_extra_step_kwargs(generator, eta)
         num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
 
-        print("=====cache begin=====")
-        prv_features = None #记录cache feature ****
+        prv_features = None #record cache feature ****
         latents_list = [latents] 
 
         if cache_interval == 1:
@@ -642,7 +641,7 @@ class TextToVideoZeroPipeline(StableDiffusionPipeline):
                 #interval_seq, pow = sample_from_quad(num_inference_steps, num_inference_steps//cache_interval, pow=pow)#[0, 3, 6, 9, 12, 16, 22, 28, 35, 43,]
         
         interval_seq = sorted(interval_seq)
-        print("=====cache end=====")
+
         # Perform the first backward process up to time T_1
         x_1_t1 = self.backward_loop(
             timesteps=timesteps[: -t1 - 1],
