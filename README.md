@@ -19,7 +19,7 @@
 * 🚀 Compatible with sampling algorithms like DDIM and PLMS
 
 ### Updates
-* **December 21, 2023** Release the code for **Stable Video Diffusion**. The upper line shows the original videos, and the below line is accelerated by DeepCache.
+* **December 21, 2023** Release the code for **Stable Video Diffusion**. The upper row shows the original videos, and the lower row is accelerated by DeepCache.
 <div align="center">
   <img src="assets/svd.gif" width="90%" ></img>
   <br>
