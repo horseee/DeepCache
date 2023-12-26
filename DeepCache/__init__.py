@@ -4,4 +4,4 @@ from .sdxl.pipeline_stable_diffusion_xl_img2img import StableDiffusionXLImg2ImgP
 
 from .sd.pipeline_text_to_video_zero import TextToVideoZeroPipeline
 
-from .sd_universal.deepcache import DeepCacheSDHelper
+from .extension.deepcache import DeepCacheSDHelper
