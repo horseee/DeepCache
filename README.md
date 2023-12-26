@@ -87,6 +87,8 @@ python main.py --model_type sdxl #Support [sdxl, sd1.5, svd]
 
 
 ## Scripts
+
+### Stable Diffusion XL
 ```bash
 python stable_diffusion_xl.py --model stabilityai/stable-diffusion-xl-base-1.0
 ```
