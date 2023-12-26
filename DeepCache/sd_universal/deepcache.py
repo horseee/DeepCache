@@ -13,7 +13,9 @@ class DeepCacheSDHelper(object):
         self.unwrap_modules()
         self.reset_states()
     
-    def set_params(self,cache_interval=1, cache_layer_id=0, cache_block_id=0, skip_mode='uniform'):
+    def set_params(self,cache_interval=1, cache_branch_id=0, skip_mode='uniform'):
+        cache_layer_id = cache_branch_id % 3
+        cache_block_id = cache_branch_id // 3
         self.params = {
             'cache_interval': cache_interval,
             'cache_layer_id': cache_layer_id,
@@ -48,6 +50,8 @@ class DeepCacheSDHelper(object):
         ] = block.forward
         def wrapped_forward(*args, **kwargs):
             skip = self.is_skip_step(block_i, layer_i, blocktype)
+            if self.cur_timestep == 50:
+                skip = True
             result = self.cached_output[(blocktype, block_name, block_i, layer_i)] if skip else self.function_dict[(blocktype, block_name,  block_i, layer_i)](*args, **kwargs)
             if not skip: self.cached_output[(blocktype, block_name, block_i, layer_i)] = result
             return result
@@ -66,7 +70,7 @@ class DeepCacheSDHelper(object):
                 self.wrap_block_forward(downsampler, "downsampler", block_i, len(getattr(block, "resnets", [])))
             self.wrap_block_forward(block, "block", block_i, 0, blocktype = "down")
         # 3. wrap midblock forward
-        self.wrap_block_forward(self.pipe.unet.mid_block, "block", 0, 0, blocktype = "mid")
+        self.wrap_block_forward(self.pipe.unet.mid_block, "mid_block", 0, 0, blocktype = "mid")
         # 4. wrap upblock forward
         block_num = len(self.pipe.unet.up_blocks)
         for block_i, block in enumerate(self.pipe.unet.up_blocks):
