@@ -28,6 +28,7 @@ class DeepCacheSDHelper(object):
             if self.cur_timestep % cache_interval == 0: return False
         if block_i > cache_block_id or blocktype == 'mid':
             return True
+        if block_i < cache_block_id: return False
         return layer_i >= cache_layer_id if blocktype == 'down' else layer_i > cache_layer_id
         
     def is_enter_position(self, block_i, layer_i):
@@ -76,7 +77,7 @@ class DeepCacheSDHelper(object):
                 self.wrap_block_forward(resnet, "resnet", block_num - block_i - 1, layer_num - layer_i - 1, blocktype = "up")
             for upsampler in getattr(block, "upsamplers", []) if block.upsamplers else []:
                 self.wrap_block_forward(upsampler, "upsampler", block_num - block_i - 1, 0, blocktype = "up")
-            self.wrap_block_forward(block, "block", block_i, 0, blocktype = "up")
+            self.wrap_block_forward(block, "block", block_num - block_i - 1, 0, blocktype = "up")
 
     def unwrap_modules(self):
         # 1. unet forward
