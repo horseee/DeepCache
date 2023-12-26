@@ -55,7 +55,6 @@ class DeepCacheSDHelper(object):
     def wrap_modules(self):
         # 1. wrap unet forward
         self.wrap_unet_forward()
-
         # 2. wrap downblock forward
         for block_i, block in enumerate(self.pipe.unet.down_blocks):
             for (layer_i, attention) in enumerate(getattr(block, "attentions", [])):
@@ -64,8 +63,9 @@ class DeepCacheSDHelper(object):
                 self.wrap_block_forward(resnet, "resnet", block_i, layer_i)
             for downsampler in getattr(block, "downsamplers", []) if block.downsamplers else []:
                 self.wrap_block_forward(downsampler, "downsampler", block_i, len(getattr(block, "resnets", [])))
+            self.wrap_block_forward(block, "block", block_i, 0, blocktype = "down")
         # 3. wrap midblock forward
-        self.wrap_block_forward(self.pipe.unet.mid_block, "mid_block", 0, 0, blocktype = "mid")
+        self.wrap_block_forward(self.pipe.unet.mid_block, "block", 0, 0, blocktype = "mid")
         # 4. wrap upblock forward
         block_num = len(self.pipe.unet.up_blocks)
         for block_i, block in enumerate(self.pipe.unet.up_blocks):
@@ -76,6 +76,7 @@ class DeepCacheSDHelper(object):
                 self.wrap_block_forward(resnet, "resnet", block_num - block_i - 1, layer_num - layer_i - 1, blocktype = "up")
             for upsampler in getattr(block, "upsamplers", []) if block.upsamplers else []:
                 self.wrap_block_forward(upsampler, "upsampler", block_num - block_i - 1, 0, blocktype = "up")
+            self.wrap_block_forward(block, "block", block_i, 0, blocktype = "up")
 
     def unwrap_modules(self):
         # 1. unet forward
