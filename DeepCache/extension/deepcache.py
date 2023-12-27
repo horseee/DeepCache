@@ -92,6 +92,7 @@ class DeepCacheSDHelper(object):
                 resnet.forward = self.function_dict[("down", "resnet", block_i, layer_i)]
             for downsampler in getattr(block, "downsamplers", []) if block.downsamplers else []:
                 downsampler.forward = self.function_dict[("down", "downsampler", block_i, len(getattr(block, "resnets", [])))]
+            block.forward = self.function_dict[("down", "block", block_i, 0)]
         # 3. midblock forward
         self.pipe.unet.mid_block.forward = self.function_dict[("mid", "mid_block", 0, 0)]
         # 4. upblock forward
@@ -104,6 +105,7 @@ class DeepCacheSDHelper(object):
                 resnet.forward = self.function_dict[("up", "resnet", block_num - block_i - 1, layer_num - layer_i - 1)]
             for upsampler in getattr(block, "upsamplers", []) if block.upsamplers else []:
                 upsampler.forward = self.function_dict[("up", "upsampler", block_num - block_i - 1, 0)]
+            block.forward = self.function_dict[("up", "block", block_num - block_i - 1, 0)]
 
     def reset_states(self):
         self.cur_timestep = 0
