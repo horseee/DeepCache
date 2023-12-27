@@ -65,17 +65,17 @@ pipe = StableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5',
 
 from DeepCache import DeepCacheSDHelper
 helper = DeepCacheSDHelper(pipe=pipe)
-
 helper.set_params(
     cache_interval=3,
     cache_branch_id=0,
 )
+helper.enable()
 
 deepcache_image = pipe(
         prompt,
         output_type='pt'
 ).images[0]
-helper.dismount()
+helper.disable()
 ```
 We here take the Stable Diffusion pipeline as an example. You can replace pipe with any variants of the Stable Diffusion pipeline, including choices like SDXL, SVD, and more. The argument `cache_branch_id` specifies the selected skip branch. For the skip branches that are deeper, the model will engage them only during the caching steps, and exclude them during the retrieval steps.
 

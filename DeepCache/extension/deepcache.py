@@ -1,19 +1,18 @@
 class DeepCacheSDHelper(object):
     def __init__(self, pipe=None):
-        if pipe is not None: self.mount(pipe)
+        if pipe is not None: 
+            self.pipe = pipe #self.mount(pipe)
 
-    def mount(self, pipe=None):
-        if pipe is not None: self.pipe = pipe
+    def enable(self):
         assert self.pipe is not None
-        self.set_params()
         self.reset_states()
         self.wrap_modules()
 
-    def dismount(self):
+    def disable(self):
         self.unwrap_modules()
         self.reset_states()
     
-    def set_params(self,cache_interval=1, cache_branch_id=0, skip_mode='uniform'):
+    def set_params(self, cache_interval=1, cache_branch_id=0, skip_mode='uniform'):
         cache_layer_id = cache_branch_id % 3
         cache_block_id = cache_branch_id // 3
         self.params = {
