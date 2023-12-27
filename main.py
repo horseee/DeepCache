@@ -51,12 +51,13 @@ if __name__ == "__main__":
         ).frames[0]
         export_to_video(frames, "{}_origin.mp4".format('rocket'), fps=7)
 
-        print("Mounting DeepCache...")
+        print("Enable DeepCache...")
         helper = DeepCacheSDHelper(pipe=pipe)
         helper.set_params(
             cache_interval=args.cache_interval,
             cache_branch_id=args.cache_branch_id,
         )
+        helper.enable()
 
         print("Running Pipeline with DeepCache...")
         set_random_seed(42)
@@ -65,7 +66,7 @@ if __name__ == "__main__":
             decode_chunk_size=8,
         ).frames[0]
         export_to_video(frames, "{}_deepcache.mp4".format('rocket'), fps=7)
-        helper.dismount()
+        helper.disable()
     else:
         print("Warmup GPU...")
         for _ in range(1):
@@ -79,12 +80,13 @@ if __name__ == "__main__":
             output_type='pt'
         ).images[0]
 
-        print("Mounting DeepCache...")
+        print("Enable DeepCache...")
         helper = DeepCacheSDHelper(pipe=pipe)
         helper.set_params(
             cache_interval=args.cache_interval,
             cache_branch_id=args.cache_branch_id,
         )
+        helper.enable()
 
         print("Running Pipeline with DeepCache...")
         set_random_seed(seed)
@@ -95,5 +97,5 @@ if __name__ == "__main__":
 
         print("Saving Results...")
         save_image([pipeline_output, deepcache_pipeline_output], 'output.png')
-        helper.dismount()
+        helper.disable()
         print("Done!")

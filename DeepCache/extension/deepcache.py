@@ -1,15 +1,13 @@
 class DeepCacheSDHelper(object):
     def __init__(self, pipe=None):
-        if pipe is not None: self.mount(pipe)
-
-    def mount(self, pipe=None):
         if pipe is not None: self.pipe = pipe
+
+    def enable(self, pipe=None):
         assert self.pipe is not None
-        self.set_params()
         self.reset_states()
         self.wrap_modules()
 
-    def dismount(self):
+    def disable(self):
         self.unwrap_modules()
         self.reset_states()
     
