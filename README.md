@@ -52,17 +52,21 @@ We introduce **DeepCache**, a novel **training-free and almost lossless** paradi
 
 ## Quick Start
 
-### Requirements
+### Install
 ```bash
-pip install transformers diffusers
+pip install DeepCache
 ```
 
 ### Usage
 
 ```python
+import torch
+
+# Loading the original pipeline
 from diffusers import StableDiffusionPipeline
 pipe = StableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5', torch_dtype=torch.float16).to("cuda:0")
 
+# Import the DeepCacheSDHelper
 from DeepCache import DeepCacheSDHelper
 helper = DeepCacheSDHelper(pipe=pipe)
 helper.set_params(
@@ -71,6 +75,7 @@ helper.set_params(
 )
 helper.enable()
 
+# Generate Image
 deepcache_image = pipe(
         prompt,
         output_type='pt'
@@ -79,14 +84,19 @@ helper.disable()
 ```
 We here take the Stable Diffusion pipeline as an example. You can replace pipe with any variants of the Stable Diffusion pipeline, including choices like SDXL, SVD, and more. The argument `cache_branch_id` specifies the selected skip branch. For the skip branches that are deeper, the model will engage them only during the caching steps, and exclude them during the retrieval steps.
 
-You can explore DeepCache by using the command provided below:
 
+## Scripts
+
+### Setup
+```
+https://github.com/horseee/DeepCache.git
+pip install diffusers transformers
+```
+
+### A general script for SD
 ```bash
 python main.py --model_type sdxl #Support [sdxl, sd1.5, svd]
 ```
-
-
-## Scripts
 
 ### Stable Diffusion XL
 ```bash
