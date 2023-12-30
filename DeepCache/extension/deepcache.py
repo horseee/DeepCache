@@ -22,10 +22,11 @@ class DeepCacheSDHelper(object):
         }
 
     def is_skip_step(self, block_i, layer_i, blocktype = "down"):
+        self.start_timestep = self.cur_timestep if self.start_timestep is None else self.start_timestep # For some pipeline that the first timestep != 0
         cache_interval, cache_layer_id, cache_block_id, skip_mode = \
             self.params['cache_interval'], self.params['cache_layer_id'], self.params['cache_block_id'], self.params['skip_mode']
         if skip_mode == 'uniform':
-            if self.cur_timestep % cache_interval == 0: return False
+            if (self.cur_timestep-self.start_timestep) % cache_interval == 0: return False
         if block_i > cache_block_id or blocktype == 'mid':
             return True
         if block_i < cache_block_id: return False
@@ -48,8 +49,6 @@ class DeepCacheSDHelper(object):
         ] = block.forward
         def wrapped_forward(*args, **kwargs):
             skip = self.is_skip_step(block_i, layer_i, blocktype)
-            if self.cur_timestep == 50:
-                skip = True
             result = self.cached_output[(blocktype, block_name, block_i, layer_i)] if skip else self.function_dict[(blocktype, block_name,  block_i, layer_i)](*args, **kwargs)
             if not skip: self.cached_output[(blocktype, block_name, block_i, layer_i)] = result
             return result
@@ -111,3 +110,4 @@ class DeepCacheSDHelper(object):
         self.cur_timestep = 0
         self.function_dict = {}
         self.cached_output = {}
+        self.start_timestep = None

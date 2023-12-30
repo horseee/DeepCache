@@ -15,7 +15,7 @@
 
 ### Why DeepCache  
 * 🚀 Training-free and almost lossless
-* 🚀 Support Stable Diffusion, Stable Diffusion XL, Stable Video Diffusion, DDPM
+* 🚀 Support Stable Diffusion, Stable Diffusion XL, Stable Video Diffusion, Stable Diffusion Pipeline / XL Pipeline for Inpainting, Stable Diffusion Img2Img Pipeline, DDPM
 * 🚀 Compatible with sampling algorithms like DDIM and PLMS
 
 ### Updates
@@ -95,7 +95,7 @@ pip install diffusers transformers
 
 ### A general script for SD
 ```bash
-python main.py --model_type sdxl #Support [sdxl, sd1.5, svd]
+python main.py --model_type sdxl #Support [sdxl, sd1.5, sd2.1, svd, sd-inpaint, sdxl-inpaint, sd-img2img]
 ```
 
 ### Stable Diffusion XL
