@@ -82,7 +82,7 @@ deepcache_image = pipe(
 ).images[0]
 helper.disable()
 ```
-We here take the Stable Diffusion pipeline as an example. You can replace pipe with any variants of the Stable Diffusion pipeline, including choices like SDXL, SVD, and more. The argument `cache_branch_id` specifies the selected skip branch. For the skip branches that are deeper, the model will engage them only during the caching steps, and exclude them during the retrieval steps.
+We here take the Stable Diffusion pipeline as an example. You can replace pipe with any variants of the Stable Diffusion pipeline, including choices like SDXL, SVD, and more. You can find examples in the [script](https://github.com/horseee/DeepCache#a-general-script-for-sd). The argument `cache_branch_id` specifies the selected skip branch. For the skip branches that are deeper, the model will engage them only during the caching steps, and exclude them during the retrieval steps. The argument `cache_interval` represents the interval for updating the cache.
 
 
 ## Scripts
