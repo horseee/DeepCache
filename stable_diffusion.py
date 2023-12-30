@@ -8,7 +8,7 @@ from torchvision.utils import save_image
 
 import argparse
 
-from DeepCache import StableDiffusionPipeline as DeepCacheStableDiffusionPipeline
+from DeepCache.sd.pipeline_stable_diffusion import StableDiffusionPipeline as DeepCacheStableDiffusionPipeline
 from diffusers import StableDiffusionPipeline
 
 def set_random_seed(seed):

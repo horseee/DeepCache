@@ -5,7 +5,7 @@ from torchvision.utils import save_image
 
 import argparse
 
-from DeepCache import TextToVideoZeroPipeline as DeepCacheTextToVideoZeroPipeline
+from DeepCache.sd.pipeline_text_to_video_zero import TextToVideoZeroPipeline as DeepCacheTextToVideoZeroPipeline
 from diffusers import TextToVideoZeroPipeline
 
 import imageio

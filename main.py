@@ -48,13 +48,13 @@ if __name__ == "__main__":
             'runwayml/stable-diffusion-inpainting', torch_dtype=torch.float16
         ).to("cuda:0")
     elif args.model_type.lower() == 'sdxl-inpaint':
-        from diffusers import StableDiffusionXLInpaintPipeline, StableDiffusionImg2ImgPipeline
-        pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
+        from diffusers import StableDiffusionXLInpaintPipeline
+        pipe = StableDiffusionXLInpaintPipeline.from_pretrained(
             'diffusers/stable-diffusion-xl-1.0-inpainting-0.1', torch_dtype=torch.float16
         ).to("cuda:0")
     elif args.model_type.lower() == 'sd-img2img':
-        from diffusers import AutoPipelineForImage2Image
-        pipe = AutoPipelineForImage2Image.from_pretrained(
+        from diffusers import StableDiffusionImg2ImgPipeline
+        pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
             "runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
         )
         pipe.enable_model_cpu_offload()
