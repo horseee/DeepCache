@@ -85,25 +85,23 @@ helper.disable()
 ```
 We here take the Stable Diffusion pipeline as an example. You can replace pipe with any variants of the Stable Diffusion pipeline, including choices like SDXL, SVD, and more. You can find examples in the [script](https://github.com/horseee/DeepCache#a-general-script-for-sd). The argument `cache_branch_id` specifies the selected skip branch. For the skip branches that are deeper, the model will engage them only during the caching steps, and exclude them during the retrieval steps. The argument `cache_interval` represents the interval for updating the cache.
 
-
-## Scripts
-
-### Setup
-```
-https://github.com/horseee/DeepCache.git
-pip install diffusers transformers
-```
-
 ### A general script for SD
 ```bash
 python main.py --model_type sdxl #Support [sdxl, sd1.5, sd2.1, svd, sd-inpaint, sdxl-inpaint, sd-img2img]
+```
+
+## Experimental code for DeepCache
+The above implementation does not require changes to the `forward` or `__call__` functions in the Diffusers pipeline, and is, therefore, more general. The following section is the experimental code that can be used to reproduce the results in the paper. It is implemented one by one for different model structures and pipelines. 
+
+### Setup
+```
+pip install diffusers transformers
 ```
 
 ### Stable Diffusion XL
 ```bash
 python stable_diffusion_xl.py --model stabilityai/stable-diffusion-xl-base-1.0
 ```
-
 
 <details>
 <summary>Output:</summary>
@@ -200,7 +198,7 @@ Please check [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#e
 
 ## Visualization
 
-Images in the upper line are the baselines, and the images in the lower line are accelerated by DeepCache. 
+Images in the upper line are the baselines and the images in the lower line are accelerated by DeepCache. 
 
 ### Stable Diffusion v1.5 (2.15x Acceleration)
 <div align="center">
