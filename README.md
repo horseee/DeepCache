@@ -246,11 +246,11 @@ We warmly welcome contributions from everyone. Please feel free to reach out to 
 
 ## Bibtex
 ```
-@article{ma2023deepcache,
+@inproceedings{ma2023deepcache,
   title={DeepCache: Accelerating Diffusion Models for Free},
   author={Ma, Xinyin and Fang, Gongfan and Wang, Xinchao},
-  journal={arXiv preprint arXiv:2312.00858},
-  year={2023}
+  booktitle={The IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year={2024}
 }
 ```
 
