@@ -91,11 +91,11 @@ python main.py --model_type sdxl #Support [sdxl, sd1.5, sd2.1, svd, sd-inpaint, 
 ```
 
 ## Experimental code for DeepCache
-The above implementation does not require changes to the `forward` or `__call__` functions in the Diffusers pipeline, and is, therefore, more general. The following section is the experimental code that can be used to reproduce the results in the paper. It is implemented one by one for different model structures and pipelines. 
+The above implementation does not require changes to the `forward` or `__call__` functions in the Diffusers pipeline, and is, therefore, more general. The following section is the experimental code that can be used to reproduce the results in the paper. It is implemented one by one for different model structures and pipelines, and thus, may not work properly due to the update of diffusers.
 
 ### Setup
 ```
-pip install diffusers transformers
+pip install diffusers==0.24.0 transformers
 ```
 
 ### Stable Diffusion XL
