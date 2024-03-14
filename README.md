@@ -193,7 +193,7 @@ Loading pipeline components...: 100%|██████████████�
 </details>
 
 ### DDPM and LDM
-Please check [here](https://github.com/horseee/DeepCache/tree/master/DeepCache#experiment-code-for-ddpm) for the experimental code of DDPM. The code for LDM will be released soon.
+Please check [here](https://github.com/horseee/DeepCache/tree/master/experiments) for the experimental code of DDPM and LDM.
 
 
 ## Visualization
