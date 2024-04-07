@@ -240,6 +240,8 @@ We sincerely thank the authors listed below who implemented DeepCache in plugins
 * Comfyui: https://gist.github.com/laksjdjf/435c512bc19636e9c9af4ee7bea9eb86 by @[laksjdjf](https://github.com/laksjdjf)
 * Colab & Gradio: https://github.com/camenduru/DeepCache-colab by @[camenduru](https://github.com/camenduru/DeepCache-colab)
 * WebUI: https://github.com/AUTOMATIC1111/stable-diffusion-webui/pull/14210 by @[aria1th](https://github.com/aria1th)
+* SD.Next: https://github.com/vladmandic/automatic by @[vladmandic](https://github.com/vladmandic)
+* MLX_deepcache for running SD on M1 Mac: https://github.com/Barry0121/mlx_deepcache by @[Barry Xue](https://github.com/Barry0121)
 
 We warmly welcome contributions from everyone. Please feel free to reach out to us.
 
