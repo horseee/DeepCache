@@ -19,7 +19,7 @@
 * 🚀 Compatible with sampling algorithms like DDIM and PLMS
 
 ### Updates
-* **June 5, 2024**: :lollipop: Our new work, [Learning-to-Cache](https://github.com/horseee/learning-to-cache/tree/main), an improved version of DeepCache on DiT. Code and checkpoints are released.
+* **June 5, 2024**: 🔥Our new work, [Learning-to-Cache](https://github.com/horseee/learning-to-cache/tree/main), an improved version of DeepCache on DiT. Code and checkpoints are released.
 * **January 5, 2024**: 💥A doc page for DeepCache has been added in [Diffusers](https://github.com/huggingface/diffusers)! Check [here](https://huggingface.co/docs/diffusers/main/en/optimization/deepcache) for more information. Many thanks to the Diffusers team!
 * **December 26, 2023**: 🔥Update a plug-and-play implementation of DeepCache, no longer requiring any modifications of the diffuser's code! Check [here](https://github.com/horseee/DeepCache#usage) for the detailed usage! Big thanks to @[yuanshi9815](https://github.com/Yuanshi9815) for contributing the code!
 * **December 25, 2023**: A demo is available via Colab [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1COM9tfGvHSJ8Zn4tScZCGgt8nxAEOlAz?usp=sharing)
