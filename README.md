@@ -19,6 +19,7 @@
 * 🚀 Compatible with sampling algorithms like DDIM and PLMS
 
 ### Updates
+* **June 27, 2024**: 🔥Our new work [AsyncDiff](https://github.com/czg1225/AsyncDiff) enables parallel inference of diffusion models on multiple GPUs. Check our [paper](https://arxiv.org/abs/2406.06911) and [code](https://github.com/czg1225/AsyncDiff)!
 * **June 5, 2024**: 🔥Our new work, [Learning-to-Cache](https://github.com/horseee/learning-to-cache/tree/main), an improved version of DeepCache on DiT. Code and checkpoints are released.
 * **January 5, 2024**: 💥A doc page for DeepCache has been added in [Diffusers](https://github.com/huggingface/diffusers)! Check [here](https://huggingface.co/docs/diffusers/main/en/optimization/deepcache) for more information. Many thanks to the Diffusers team!
 * **December 26, 2023**: 🔥Update a plug-and-play implementation of DeepCache, no longer requiring any modifications of the diffuser's code! Check [here](https://github.com/horseee/DeepCache#usage) for the detailed usage! Big thanks to @[yuanshi9815](https://github.com/Yuanshi9815) for contributing the code!
