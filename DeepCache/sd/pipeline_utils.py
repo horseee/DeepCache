@@ -165,7 +165,7 @@ def is_safetensors_compatible(filenames, variant=None, passed_components=None) -
             sf_filenames.add(filename)
 
     for filename in pt_filenames:
-        #  filename = 'foo/bar/baz.bam' -> path = 'foo/bar', filename = 'baz', extention = '.bam'
+        #  filename = 'foo/bar/baz.bam' -> path = 'foo/bar', filename = 'baz', extension = '.bam'
         path, filename = os.path.split(filename)
         filename, extension = os.path.splitext(filename)
 
