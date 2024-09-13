@@ -1,15 +1,26 @@
 class DeepCacheSDHelper(object):
     def __init__(self, pipe=None):
-        if pipe is not None: self.pipe = pipe
+        if pipe is not None:
+            self.pipe = pipe
+        self._enabled = False
 
-    def enable(self, pipe=None):
-        assert self.pipe is not None
-        self.reset_states()
-        self.wrap_modules()
+    def enable(self):
+        if not self._enabled:
+            self.reset_states()
+            self.wrap_modules()
+            self._enabled = True
+            print("Enabling Deepcache")
+        else:
+            print("DeepCache is already enabled.")
 
     def disable(self):
-        self.unwrap_modules()
-        self.reset_states()
+        if self._enabled:
+            self.unwrap_modules()
+            self.reset_states()
+            self._enabled = False
+            print("Disabling Deepcache")
+        else:
+            print("DeepCache is already disabled.")
     
     def set_params(self,cache_interval=1, cache_branch_id=0, skip_mode='uniform'):
         cache_layer_id = cache_branch_id % 3

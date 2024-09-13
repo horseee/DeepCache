@@ -1,2 +1,6 @@
 __pycache__
 output.png
+
+*.egg-info
+
+.idea
